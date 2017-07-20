@@ -1,0 +1,6 @@
+$loading_height: 48;
+$loading_width: 70;
+
+@function px2 ($size) {
+  @return $size + px
+}
