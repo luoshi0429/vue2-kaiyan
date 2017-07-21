@@ -1,1 +1,2 @@
-export const CHANGELOADING = 'CHANGELOADING'
+export const CHANGE_LOADING = 'CHANGE_LOADING'
+export const GET_HOME_FEED = 'GET_HOME_FEED'

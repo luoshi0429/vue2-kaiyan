@@ -1,6 +1,14 @@
 $loading_height: 48;
 $loading_width: 70;
+$home_vedio: 'http://static.kaiyanapp.com/eyepetizer-web/homepage.mp4';
+$border_color: #888;
+$size_default: 16;
 
 @function px2 ($size) {
   @return $size + px
+}
+
+@mixin positionCenter {
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
