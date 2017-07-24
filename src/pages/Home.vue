@@ -8,18 +8,20 @@
       :feed="feed"
       :handleClick="handleClick"
     />
+    <foot />
   </div>
 </template>
 
 <script>
   import topScreen from '@/components/TopScreen'
   import homeFeed from '@/components/homeFeed'
+  import foot from '@/components/Footer.vue'
   import { mapState, mapActions } from 'vuex'
   import { formatMonthDay } from '@/utils'
   export default {
     name: 'Home',
     components: {
-      topScreen, homeFeed
+      topScreen, homeFeed, foot
     },
     computed: {
       feeds () {
@@ -38,7 +40,6 @@
       }
     },
     created () {
-      console.log('------------')
       this.getHomeFeed()
     }
   }
@@ -48,6 +49,8 @@
   @import '../styles/index.scss';
   .home-page {
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .time {

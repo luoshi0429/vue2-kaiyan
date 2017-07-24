@@ -1,15 +1,11 @@
 <template>
   <div id="app">
     <loading v-if="isLoading" />
-    <div class="app-container">
-      <router-view></router-view>
-      <foot />
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import foot from '@/components/Footer.vue'
   import loading from '@/components/Loading'
   import { mapState } from 'vuex'
   export default {
@@ -18,13 +14,13 @@
       ...mapState(['isLoading'])
     },
     components: {
-      foot,
       loading
     }
 }
 </script>
 
 <style lang="scss">
+  @import './styles/index.scss';
   html, body {
     height: 100%;
     overflow: hidden;
@@ -32,7 +28,7 @@
 
   body {
     font-family: 'Lantinghei SC','Microsoft Yahei','Hiragino Sans GB','Helvetica Neue',Helvetica,Arial,'sans-serif';
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
   }
 
@@ -42,7 +38,6 @@
       list-style: none;
       text-decoration: none;
       border: none;
-      font-weight: normal;
       box-sizing: border-box;
       -webkit-tap-highlight-color:transparent;
       &:hover{
@@ -52,11 +47,6 @@
 
   #app {
     height: 100%;
-  }
-
-  .app-container {
-    height: 100%;
-    overflow-y: auto;
   }
 
   ::-webkit-scrollbar {
@@ -74,6 +64,15 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -10;
+  }
+
+  .divider {
+    height: px2(1);
+    background: #fff;
+    margin-bottom: px2(7);
+  }
+
+  .short-divider {
+    width: px2(40);
   }
 </style>

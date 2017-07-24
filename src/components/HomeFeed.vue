@@ -1,8 +1,8 @@
 <template>
-  <div class="home-feed-item" @click="handleClick(feed)">
+  <div class="home-feed-item" @click="handleClick(feed)" :style="{ backgroundImage: `url(${feed.coverForFeed})` }">
     <h3 class="feed-title">{{ feed.title }}</h3>
     <p class="feed-info">{{ feedInfo }}</p>
-    <img class="feed-icon" :src="feed.coverForFeed" />
+    <!--<img class="feed-icon" :src="feed.coverForFeed" />-->
     <div class="cover"></div>
   </div>
 </template>
@@ -37,15 +37,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 
-  .feed-icon {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -100;
+  .home-feed-item:hover .cover {
+    background: transparent;
   }
 
   .feed-title {
