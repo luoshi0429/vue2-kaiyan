@@ -1,16 +1,16 @@
 <template>
   <div class="top-screen">
     <div class="menu">
-      <button class="wechat"></button>
-      <button class="sina"></button>
-      <button class="email"></button>
+      <button class="wechat" @click="handleWechat"></button>
+      <button class="sina" @click="handleSina"></button>
+      <button class="email" @click="handleEmail"></button>
     </div>
     <div class="content">
       <div class="logo logoSprite"></div>
       <div class="desc logoSprite"></div>
       <div class="download">
-        <div class="ios logoSprite"></div>
-        <div class="android logoSprite"></div>
+        <div class="ios logoSprite" @click="handleIOS"></div>
+        <div class="android logoSprite" @click="handleAndroid"></div>
       </div>
     </div>
     <div class="cover"></div>
@@ -27,6 +27,12 @@
 
 <script>
   export default {
+    props: {
+      handleModal: {
+        type: Function,
+        default: () => {}
+      }
+    },
     data () {
       return {
         currentIndex: 0,
@@ -41,10 +47,26 @@
         ]
       }
     },
+    methods: {
+      handleWechat () {
+        this.handleModal('wechat')
+      },
+      handleSina () {
+        // window.open('http://weibo.com/eyepetizer')
+        window.location.href = 'http://weibo.com/eyepetizer'
+      },
+      handleEmail () {
+        window.open('mailto:bd@eyepetizer.net')
+      },
+      handleIOS () {
+        window.open('https://itunes.apple.com/cn/app/%E5%BC%80%E7%9C%BC-eyepetizer-%E6%AF%8F%E6%97%A5%E7%B2%BE%E9%80%89%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90/id978591579?mt=8')
+      },
+      handleAndroid () {
+        this.handleModal('android')
+      }
+    },
     created () {
-
       const duration = this.currentIndex % 2 === 0 ? 8000 : 12000
-
       const beginAnimation = () => {
         this.currentIndex = this.currentIndex === this.imgs.length - 1 ? 0 : this.currentIndex + 1
         this.timeID = setTimeout(() => {
@@ -71,6 +93,10 @@
     background: transparent;
   }
 
+  .cover {
+    z-index: -1;
+  }
+
   .menu {
     width: 100%;
     text-align: right;
@@ -85,6 +111,7 @@
     margin-right: px2(10);
     background: url('http://static.kaiyanapp.com/eyepetizer-web/assets/images/sprite_share.bc0f4494.png') no-repeat;
     background-size: cover;
+    outline: none;
   }
 
   .menu .wechat {

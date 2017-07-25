@@ -5,8 +5,8 @@
       <div class="icon logoSprite"></div>
       <div class="logo logoSprite"></div>
       <div class="download">
-        <div class="ios logoSprite"></div>
-        <div class="android logoSprite"></div>
+        <div class="ios logoSprite" @click="handleIOS"></div>
+        <div class="android logoSprite" @click="handleAndroid"></div>
       </div>
     </div>
     <copyright />
@@ -16,7 +16,21 @@
 <script>
   import copyright from './Copyright'
   export default {
-    components: { copyright }
+    props: {
+      handleModal: {
+        type: Function,
+        default: () => {}
+      }
+    },
+    components: { copyright },
+    methods: {
+      handleIOS () {
+        window.open('https://itunes.apple.com/cn/app/%E5%BC%80%E7%9C%BC-eyepetizer-%E6%AF%8F%E6%97%A5%E7%B2%BE%E9%80%89%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90/id978591579?mt=8')
+      },
+      handleAndroid () {
+        this.handleModal('android')
+      }
+    }
   }
 </script>
 

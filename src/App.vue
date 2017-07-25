@@ -13,9 +13,7 @@
     computed: {
       ...mapState(['isLoading'])
     },
-    components: {
-      loading
-    }
+    components: { loading }
 }
 </script>
 

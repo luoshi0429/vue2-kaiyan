@@ -1,7 +1,7 @@
 <template>
   <div class="video-container">
     <div class="video-player">
-      <video :controls="isPlaying" :src="videoDetail.playUrl">
+      <video ref="player" :controls="isPlaying" :src="videoDetail.playUrl">
       </video>
       <div
         v-if="!isPlaying"
@@ -33,6 +33,8 @@
     methods: {
       handlePlay () {
         this.isPlaying = !this.isPlaying
+        const player = this.$refs.player
+        player.play()
       }
     }
   }

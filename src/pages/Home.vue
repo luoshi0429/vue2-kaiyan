@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <top-screen />
+    <top-screen :handleModal="handleModal" />
     <div class="time">{{ time }}</div>
     <home-feed
       v-for="feed in feeds"
@@ -8,7 +8,8 @@
       :feed="feed"
       :handleClick="handleClick"
     />
-    <foot />
+    <foot :handleModal="handleModal" />
+    <modal :style="{ display: !modalType ? 'none' : 'block' }" :handleClick="dismissModal" :modalType="modalType" />
   </div>
 </template>
 
@@ -16,12 +17,18 @@
   import topScreen from '@/components/TopScreen'
   import homeFeed from '@/components/homeFeed'
   import foot from '@/components/Footer.vue'
+  import modal from '@/components/Modal'
   import { mapState, mapActions } from 'vuex'
   import { formatMonthDay } from '@/utils'
   export default {
     name: 'Home',
     components: {
-      topScreen, homeFeed, foot
+      topScreen, homeFeed, foot, modal
+    },
+    data () {
+      return {
+        modalType: ''
+      }
     },
     computed: {
       feeds () {
@@ -37,6 +44,19 @@
       ...mapActions(['getHomeFeed']),
       handleClick (feed) {
         this.$router.push(`/detail/${feed.id}`)
+      },
+      handleModal (type) {
+        switch (type) {
+          case 'android':
+          case 'wechat':
+            this.modalType = type
+            break
+          default:
+            break
+        }
+      },
+      dismissModal () {
+        this.modalType = ''
       }
     },
     created () {
